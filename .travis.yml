@@ -1,0 +1,9 @@
+language: c
+compiler:
+  - gcc
+  - clang
+script: "mkdir build && cd build && cmake .. && make && cd ../sharness && make"
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq libsodium-dev cmake libssl-dev
+
