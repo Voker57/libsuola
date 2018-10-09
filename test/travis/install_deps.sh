@@ -1,5 +1,21 @@
 set -e
 
+upgrade_system() {
+	set -v
+	set -e
+	VERSION="$1"
+	ARCHIVES="
+deb http://fi.archive.ubuntu.com/ubuntu/ $VERSION main 
+###### Ubuntu Update Repos
+deb http://fi.archive.ubuntu.com/ubuntu/ $VERSION-security main 
+deb http://fi.archive.ubuntu.com/ubuntu/ $VERSION-updates main 
+deb http://fi.archive.ubuntu.com/ubuntu/ $VERSION-backports main "
+	echo "$ARCHIVES" | sudo tee "/etc/apt/sources.list.d/$VERSION.list"
+	sudo apt-get update
+	sudo apt-get install dpkg # To install new package format
+	sudo apt-get install libssl-dev
+}
+
 install_openssl() {
 	set -v
 	set -e
@@ -52,5 +68,6 @@ install_libsodium() {
 
 set -v
 
+upgrade_system "$UPGRADE"
 install_openssl "$OPENSSL_VERSION"
 install_libsodium stable

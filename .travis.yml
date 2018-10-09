@@ -4,7 +4,7 @@ cache:
     - "$HOME/cache"
 compiler:
   - gcc
-sudo: false
+sudo: required
 script: ./test/travis/script.sh
 notifications:
   email:
@@ -13,8 +13,9 @@ notifications:
   irc: "irc://chat.freenode.net/#libsuola"
   use_notice: true
 env:
-  - OPENSSL_VERSION=OpenSSL_1_1_1
-  - OPENSSL_VERSION=OpenSSL_1_0_2p
+  #- OPENSSL_VERSION=OpenSSL_1_1_1
+  #- OPENSSL_VERSION=OpenSSL_1_0_2p
+  - OPENSSL_VERSION=native UPGRADE=bionic
 addons:
   apt:
     packages:
