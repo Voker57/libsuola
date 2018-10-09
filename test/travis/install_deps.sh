@@ -4,7 +4,7 @@ install_openssl() {
 	set -v
 	set -e
 	VERSION="$1"
-	OSSL_ROOT="$HOME/cache/openssl/$VERSION"
+	export OSSL_ROOT="$HOME/cache/openssl/$VERSION"
 	if [ -e "$OSSL_ROOT" ]
 	then
 		return 0
