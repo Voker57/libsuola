@@ -4,6 +4,11 @@ install_openssl() {
 	set -v
 	set -e
 	VERSION="$1"
+	if [ "$VERSION" == native ]
+	then
+		export OSSL_ROOT="/usr"
+		return 0
+	fi
 	export OSSL_ROOT="$HOME/cache/openssl/$VERSION"
 	if [ -e "$OSSL_ROOT" ]
 	then
